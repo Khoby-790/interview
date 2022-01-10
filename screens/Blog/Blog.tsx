@@ -26,17 +26,17 @@ const Blog = ({ navigation, route }: StackScreenProps<StackParamList>) => {
   const [readPerentage, setReadPerentage] = useState<Number>(0);
   const [day] = useState("Monday");
   const [fromTime, setFromTime] = useState(new Date());
-  const [toTime] = useState(new Date(dt.setHours(dt.getHours() + 1)));
+  const [toTime] = useState(new Date(dt.setHours(dt.getHours() + 3)));
   const [color, setColor] = useState("#26de81");
 
   const handleBack = () => {
     if (readPerentage < 0.7) {
       console.log("readPerentage", readPerentage);
       schedulePushNotification(
+        "Reminder",
         "Read Blog",
-        "Read Blog",
-        "Read Blog",
-        fromTime,
+        blog?.title,
+        toTime,
         day
       )
         .then((res) => {
@@ -88,6 +88,7 @@ const Blog = ({ navigation, route }: StackScreenProps<StackParamList>) => {
         const { height } = contentSize;
         const { y } = contentOffset;
         const position = y / height;
+        console.log(height, y);
         console.log(position);
         setReadPerentage(position);
       }}
