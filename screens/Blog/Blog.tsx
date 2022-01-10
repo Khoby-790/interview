@@ -25,9 +25,7 @@ const Blog = ({ navigation, route }: StackScreenProps<StackParamList>) => {
   const { theme } = useAppTheme();
   const [readPerentage, setReadPerentage] = useState<Number>(0);
   const [day] = useState("Monday");
-  const [fromTime, setFromTime] = useState(new Date());
   const [toTime] = useState(new Date(dt.setHours(dt.getHours() + 3)));
-  const [color, setColor] = useState("#26de81");
 
   const handleBack = () => {
     if (readPerentage < 0.7) {
@@ -39,7 +37,7 @@ const Blog = ({ navigation, route }: StackScreenProps<StackParamList>) => {
         toTime,
         day
       )
-        .then((res) => {
+        .then(() => {
           Alert.alert("We will remind you to read blog");
         })
         .catch((err) => {
@@ -128,5 +126,3 @@ const Blog = ({ navigation, route }: StackScreenProps<StackParamList>) => {
 };
 
 export default Blog;
-
-const styles = StyleSheet.create({});
